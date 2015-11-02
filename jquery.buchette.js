@@ -1,5 +1,5 @@
 /*
-A.Cuisinier - v1.1.0
+ApiO - v1.1.0
 
 The MIT License (MIT)
 
