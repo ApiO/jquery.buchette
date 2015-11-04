@@ -6,7 +6,7 @@ jQuery UI collection for advanced search
 
 ## Documentation & demo
 
-> For code sample check out the index.html file or go to the [live demo](http://acuisinier.com/demo/jquery.buchette).
+> For code sample check out the index.html file or go to the [live demo](http://acuisinier.com/demo/jquery.buchette) or [JSFiddle](http://jsfiddle.net/5k7brh7q/).
 
 > Available on NuGet Gallery : [here](https://www.nuget.org/packages/jquery.buchette)
 
