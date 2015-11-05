@@ -2,7 +2,7 @@
 
 jQuery UI collection for advanced search
 
-![](http://acuisinier.com/images/jquery.buchette.png)
+![](https://github.com/ApiO/jquery.buchette/blob/master/jquery.buchette.jpg?raw=true)
 
 ## Documentation & demo
 
