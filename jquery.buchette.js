@@ -58,7 +58,6 @@ SOFTWARE.
 
         container.append(search);
 
-
         function updateSelectedItems() {
             if (element.data().selectedItemCount === 0) {
                 $("span.count", element).remove();
@@ -78,6 +77,16 @@ SOFTWARE.
         var loadToArea = [];
 
         if (options.area !== undefined && options.area != null) {
+            var area = $(options.area);
+            if (area.length === 0) {
+                console.error("Element \"" + options.area + "\" does not exists");
+                return;
+            }
+            if (area.attr("id") === undefined) {
+                console.error("Element \"" + options.area + "\" must have an id");
+                return;
+            }
+
             element.data().removeCallback = function (item) {
                 $.each($("li", ul), function (i, li) {
                     var d = $(li).data().dropdown.data;
@@ -105,7 +114,7 @@ SOFTWARE.
                                     if (options.area === undefined || options.area == null) return;
 
                                     if (cb.is(":checked")) {
-                                        $("#" + options.area).data().addBuchette([{
+                                        $(options.area).data().addBuchette([{
                                             label: item.label,
                                             ref: item,
                                             callback: element.data().removeCallback
@@ -175,7 +184,7 @@ SOFTWARE.
         // loads checked items into area
         if (options.area === undefined || options.area == null) return;
         if (loadToArea.length > 0) {
-            $("#" + options.area).data().addBuchette(loadToArea);
+            $(options.area).data().addBuchette(loadToArea);
         }
     };
 
@@ -197,9 +206,17 @@ SOFTWARE.
     };
 
     $.fn.buchette = function (options) {
+        if ($(this).length === 0) {
+            console.error("Element not found \"" + this.selector + "\"");
+            return;
+        }
+        if ($(this).attr("id") === undefined) {
+            console.error("Element must have an id", this);
+            return;
+        }
         if (options === undefined || options == null
          || options.type === undefined || options.type == null) {
-            $.error("Invalid usage");
+            console.error("Invalid usage");
             return;
         }
 
@@ -211,7 +228,7 @@ SOFTWARE.
                 itializeBuchetteArea($(this));
                 break;
             default:
-                $.error("Invalid buchette option type \"" + options.type + "\"");
+                console.error("Invalid buchette option type \"" + options.type + "\"");
         }
     };
 })(jQuery);
