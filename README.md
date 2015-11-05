@@ -30,15 +30,15 @@ Safari|v4
 
 ```html
 
-	<!-- reference dependencies -->
+  <!-- reference dependencies -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   
-	<!-- reference both css and js files -->
+  <!-- reference both css and js files -->
   <link href="jquery.buchette.css" rel="stylesheet">
   <script src="jquery.buchette.js"></script>
     
-	<!-- Buchette elements -->
+  <!-- Buchette elements -->
   <div id="list"></div>
   <ul id="area"></ul>
  ```
