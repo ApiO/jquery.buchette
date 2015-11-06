@@ -70,7 +70,7 @@ Filter object definition:
 {
   filter: string // refers to filter value of the 'buchette' source/parent 
   data: object   // user data from dropdown initialisation
-]
+}
 ```
 
 
