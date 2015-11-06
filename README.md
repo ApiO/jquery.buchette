@@ -29,39 +29,39 @@ Safari|v4
 **Usages**
 
 ```html
-  <!-- reference dependencies -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" >
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  
-  <!-- reference both css and js files -->
-  <link href="jquery.buchette.css" rel="stylesheet">
-  <script src="jquery.buchette.js"></script>
-    
-  <!-- Buchette elements -->
-  <div id="list"></div>
-  <ul id="area"></ul>
- ```
+<!-- reference dependencies -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" >
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- reference both css and js files -->
+<link href="jquery.buchette.css" rel="stylesheet">
+<script src="jquery.buchette.js"></script>
+
+<!-- Buchette elements -->
+<div id="list"></div>
+<ul id="area"></ul>
+```
  
 ***Area***
 
 ```javascript
-  // initializes area
-  $("#area").buchette({
-      type: "area"
-  });
-  
- ```
+// initializes area
+$("#area").buchette({
+    type: "area"
+});
 
-```javascript
-  // Binds callback to area 'change' event
-  $("#area").on("change", function() {
-    console.log("foo");
-  });
 ```
 
 ```javascript
-  // Get the area filter list
-  var filters = $("#area").getFilters();
+// Binds callback to area 'change' event
+$("#area").on("change", function() {
+  console.log("foo");
+});
+```
+
+```javascript
+// Get the area filter list
+var filters = $("#area").getFilters();
 ```
 
 Filter object definition:
@@ -84,25 +84,25 @@ area|change|Triggered when the area's filter list change.
 ***Dropdown list***
  
 ```javascript
-  // initializes dropdown list
-  $("#list").buchette({
-      type: "dropdown",
-      label: "Foo list", // optional, title displayed into the element
-      area: "#area",     // area id, optional if you does not want to use area binding behaviors
-      count: true,       // optional, display selected item number
-      filter: "fooCol",  // refers to a server side object name, as DB column/table or anything else
-      data: [
-          { 
-            label: "label 1", // used by the 'buchette' in the aea
-            checked: false,   // initial state
-            data: { foo: 1, ... }  // user data
-          },
-          { label: "label 2", checked: false, data: { foo: 2 } },
-          { label: "label 3", checked: true, data: { foo: 3 } },
-          { label: "label 4", checked: false, data: { foo: 4 } },
-          ...
-      ]
-  });
+// initializes dropdown list
+$("#list").buchette({
+    type: "dropdown",
+    label: "Foo list", // optional, title displayed into the element
+    area: "#area",     // area id, optional if you does not want to use area binding behaviors
+    count: true,       // optional, display selected item number
+    filter: "fooCol",  // refers to a server side object name, as DB column/table or anything else
+    data: [
+        { 
+          label: "label 1", // used by the 'buchette' in the aea
+          checked: false,   // initial state
+          data: { foo: 1, ... }  // user data
+        },
+        { label: "label 2", checked: false, data: { foo: 2 } },
+        { label: "label 3", checked: true, data: { foo: 3 } },
+        { label: "label 4", checked: false, data: { foo: 4 } },
+        ...
+    ]
+});
 ```
 
 ## License
