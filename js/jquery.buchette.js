@@ -1,5 +1,6 @@
 /*
-ApiO - v1.1.0
+ApiO - v1.2.0
+https://github.com/ApiO/jquery.buchette
 
 The MIT License (MIT)
 
@@ -25,7 +26,34 @@ SOFTWARE.
 */
 
 (function ($) {
-    function itializeBuchetteDropDown(element, options) {
+    /* DROPDOWN LIST*/
+
+    function validateDropdownOption(element, options) {
+        var area = $(options.area);
+        if (area.length === 0) {
+            console.error("Element \"" + options.area + "\" does not exists");
+            $(document).trigger("error");
+            return false;
+        }
+        if (area.attr("id") === undefined) {
+            console.error("Element \"" + options.area + "\" must have an id");
+            $(document).trigger("error");
+            return false;
+        }
+        if (options.filter === undefined || options.filter == null) {
+            console.error("Filter option is missing for \"" + element.attr("id") + "\"");
+            $(document).trigger("error");
+            return false;
+        }
+        if (options.filter.match(/^\w+$/) === null) {
+            console.error("Filter option \"" + options.filter + "\" not valid for \"" + element.attr("id") + "\". regex: /^\w+$/");
+            $(document).trigger("error");
+            return false;
+        }
+        return true;
+    };
+
+    function initializeBuchetteDropDown(element, options) {
         element.append("<span>" + (options.label !== undefined ? options.label : "") + "</span>");
 
         var container = $("<div class=\"buchette-container\" style=\"display:none;\"></div>")
@@ -77,13 +105,7 @@ SOFTWARE.
         var loadToArea = [];
 
         if (options.area !== undefined && options.area != null) {
-            var area = $(options.area);
-            if (area.length === 0) {
-                console.error("Element \"" + options.area + "\" does not exists");
-                return;
-            }
-            if (area.attr("id") === undefined) {
-                console.error("Element \"" + options.area + "\" must have an id");
+            if (!validateDropdownOption(element, options)) {
                 return;
             }
 
@@ -115,13 +137,12 @@ SOFTWARE.
 
                                     if (cb.is(":checked")) {
                                         $(options.area).data().addBuchette([{
+                                            filter: options.filter,
                                             label: item.label,
                                             ref: item,
                                             callback: element.data().removeCallback
                                         }]);
                                     } else {
-                                        console.info("li config", item);
-                                        console.info("element.data()", element.data());
                                         item.buchette.remove();
                                     }
                                     if (count) {
@@ -137,6 +158,7 @@ SOFTWARE.
 
                 if (item.checked) {
                     loadToArea.push({
+                        filter: options.filter,
                         label: item.label,
                         ref: item,
                         callback: element.data().removeCallback
@@ -149,6 +171,7 @@ SOFTWARE.
             element.data().selectedItemCount = loadToArea.length;
             updateSelectedItems();
         }
+
         container.append(ul);
 
         container.append("<div class=\"search-no-result\" style=\"display:none;\">No result</div>");
@@ -188,47 +211,90 @@ SOFTWARE.
         }
     };
 
-    function itializeBuchetteArea(element) {
-        element.addClass("buchette-area");
+    /* AREA */
 
+    function initializeBuchetteArea(element) {
+        element.addClass("buchette-area");
+        
         element.data().addBuchette = function (items) {
+            element.trigger("change");
             $.each(items, function (i, item) {
+                
                 var buchette = $("<li>" + item.label + "<a href=\"#\"><i class=\"fa fa-remove\"></i></a></li>")
                     .on("click", "a", function () {
                         item.callback(item.ref);
                         $(this).parent().remove();
+                        element.trigger("change");
                     });
+
+                buchette.remove = function () {
+                    $.fn.remove.apply(this, arguments);
+                    element.trigger("change");
+                };
+
+                buchette.data().filter = item.filter;
+                buchette.data().data = item.ref.data;
 
                 element.append(buchette);
                 item.ref.buchette = buchette;
             });
         };
     };
+    
+    /*  MAIN */
 
-    $.fn.buchette = function (options) {
-        if ($(this).length === 0) {
-            console.error("Element not found \"" + this.selector + "\"");
-            return;
+    function validateElement(element, options) {
+        if ($(element).length === 0) {
+            console.error("Element not found \"" + element.selector + "\"");
+            $(document).trigger("error");
+            return false;
         }
-        if ($(this).attr("id") === undefined) {
-            console.error("Element must have an id", this);
-            return;
+        if ($(element).attr("id") === undefined) {
+            console.error("Element must have an id", element);
+            $(document).trigger("error");
+            return false;
         }
         if (options === undefined || options == null
          || options.type === undefined || options.type == null) {
             console.error("Invalid usage");
-            return;
+            $(document).trigger("error");
+            return false;
         }
+        return true;
+    };
+    
+    $.fn.getFilters = function () {
+        var element = $(this);
+        if (element.data() === undefined 
+            || element.data().options === undefined
+            || element.data().options.type !== "area") return null;
+
+        var items = [];
+        $.each($("li", element), function (i, item) {
+            items.push($(item).data());
+        });
+        return items;
+    };
+
+    $.fn.buchette = function (options) {
+        if (!validateElement(this, options))
+            return null;
+
+        var element = $(this);
+        element.data().options = options;
 
         switch (options.type) {
             case "dropdown":
-                itializeBuchetteDropDown($(this), options);
+                initializeBuchetteDropDown(element, options);
                 break;
             case "area":
-                itializeBuchetteArea($(this));
+                initializeBuchetteArea(element);
                 break;
             default:
                 console.error("Invalid buchette option type \"" + options.type + "\"");
+                $(document).trigger("error");
+                return null;
         }
+        return element;
     };
 })(jQuery);

@@ -6,12 +6,24 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD1552FD-C536-41B1-AD10-20F0AAE5B1A8}"
 	ProjectSection(SolutionItems) = preProject
 		index.html = index.html
-		jquery.buchette.css = jquery.buchette.css
-		jquery.buchette.js = jquery.buchette.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{214971A2-A3A7-48E5-9815-588969AAB019}"
+	ProjectSection(SolutionItems) = preProject
+		js\jquery.buchette.js = js\jquery.buchette.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{0193FB48-C9D4-4476-BA17-686D531A05DD}"
+	ProjectSection(SolutionItems) = preProject
+		css\jquery.buchette.css = css\jquery.buchette.css
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{214971A2-A3A7-48E5-9815-588969AAB019} = {FD1552FD-C536-41B1-AD10-20F0AAE5B1A8}
+		{0193FB48-C9D4-4476-BA17-686D531A05DD} = {FD1552FD-C536-41B1-AD10-20F0AAE5B1A8}
 	EndGlobalSection
 EndGlobal
