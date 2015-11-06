@@ -65,7 +65,8 @@ Safari|v4
 ```
 
 Filter object definition:
-```json
+
+```javascript
 {
   filter: string // refers to filter value of the 'buchette' source/parent 
   data: object   // user data from dropdown initialisation
