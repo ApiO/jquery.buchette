@@ -62,11 +62,14 @@ Safari|v4
 ```javascript
   // Get the area filter list
   var filters = $("#area").getFilters();
+```
 
-[{
-  filter: string
-  data: object // user data from dropdown initialisation
-}]
+Filter object definition:
+```json
+{
+  filter: string // refers to filter value of the 'buchette' source/parent 
+  data: object   // user data from dropdown initialisation
+]
 ```
 
 
