@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="1.2.1">
+        <id>jquery.buchette</id>
+        <version>1.2.1</version>
+        <authors>ApiO</authors>
+        <owners>ApiO</owners>
+        <licenseUrl>https://github.com/ApiO/jquery.buchette/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/ApiO/jquery.buchette</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/ApiO/jquery.buchette/master/omfg.64x64.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>jQuery UI collection for advanced search</description>
+        <copyright>The MIT License (MIT) Copyright (c) 2015</copyright>
+        <tags>jquery buchette</tags>
+        <dependencies>
+            <dependency id="FontAwesome" version="2.0" />
+            <dependency id="jQuery" version="1.11.3" />
+        </dependencies>
+    </metadata>
+    <files />
+</package>
