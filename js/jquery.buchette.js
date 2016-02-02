@@ -1,5 +1,5 @@
 /*
-ApiO - v1.2.0
+ApiO - v1.2.1
 https://github.com/ApiO/jquery.buchette
 
 The MIT License (MIT)
@@ -57,32 +57,32 @@ SOFTWARE.
         element.append("<span>" + (options.label !== undefined ? options.label : "") + "</span>");
 
         var container = $("<div class=\"buchette-container\" style=\"display:none;\"></div>")
-                            .on("click", function (event) {
-                                event.stopPropagation();
-                            });
+			.on("click", function (event) {
+				event.stopPropagation();
+			});
 
         var search = $("<div class=\"buchette-search\"><input type=\"search\" placeholder=\"Search ...\" /><div>")
-                            .on("input", function () {
-                                var val = $("input", this).val();
-                                var ul = $(this).closest(".buchette-container").find("ul");
-                                var lis = $("li", ul);
-                                var numClose = 0;
-                                lis.show();
-                                $(".search-no-result", element).hide();
+			.on("input", function () {
+				var val = $("input", this).val();
+				var ul = $(this).closest(".buchette-container").find("ul");
+				var lis = $("li", ul);
+				var numClose = 0;
+				lis.show();
+				$(".search-no-result", element).hide();
 
-                                if (val === "") return;
+				if (val === "") return;
 
-                                val = val.toLowerCase();
-                                $.each($("li", ul), function (i, li) {
-                                    if ($("span", li).html().toLowerCase().indexOf(val) < 0) {
-                                        $(li).hide();
-                                        numClose++;
-                                    }
-                                });
+				val = val.toLowerCase();
+				$.each($("li", ul), function (i, li) {
+					if ($("span", li).html().toLowerCase().indexOf(val) < 0) {
+						$(li).hide();
+						numClose++;
+					}
+				});
 
-                                if (numClose === lis.length)
-                                    $(".search-no-result", element).show();
-                            });
+				if (numClose === lis.length)
+					$(".search-no-result", element).show();
+			});
 
         container.append(search);
 
@@ -127,29 +127,29 @@ SOFTWARE.
         if (options.data != undefined && options.data != null && options.data.length > 0) {
             $.each(options.data, function (i, item) {
                 var checkbox = $("<input type=\"checkbox\" />")
-                                .prop("checked", item.checked)
-                                .on("change", function () {
-                                    var cb = $(this);
-                                    var itemData = cb.closest("li").data().dropdown;
-                                    itemData.checked = cb.is(":checked");
+					.prop("checked", item.checked)
+					.on("change", function () {
+						var cb = $(this);
+						var itemData = cb.closest("li").data().dropdown;
+						itemData.checked = cb.is(":checked");
 
-                                    if (options.area === undefined || options.area == null) return;
+						if (options.area === undefined || options.area == null) return;
 
-                                    if (cb.is(":checked")) {
-                                        $(options.area).data().addBuchette([{
-                                            filter: options.filter,
-                                            label: item.label,
-                                            ref: item,
-                                            callback: element.data().removeCallback
-                                        }]);
-                                    } else {
-                                        item.buchette.remove();
-                                    }
-                                    if (count) {
-                                        element.data().selectedItemCount += cb.is(":checked") ? 1 : -1;
-                                        updateSelectedItems();
-                                    }
-                                });
+						if (cb.is(":checked")) {
+							$(options.area).data().addBuchette([{
+								filter: options.filter,
+								label: item.label,
+								ref: item,
+								callback: element.data().removeCallback
+							}]);
+						} else {
+							item.buchette.remove();
+						}
+						if (count) {
+							element.data().selectedItemCount += cb.is(":checked") ? 1 : -1;
+							updateSelectedItems();
+						}
+					});
 
                 var content = $("<label><span>" + item.label + "</span></label>").prepend(checkbox);
                 var li = $("<li>").append(content).data("dropdown", item);
@@ -217,7 +217,6 @@ SOFTWARE.
         element.addClass("buchette-area");
         
         element.data().addBuchette = function (items) {
-            element.trigger("change");
             $.each(items, function (i, item) {
                 
                 var buchette = $("<li>" + item.label + "<a href=\"#\"><i class=\"fa fa-remove\"></i></a></li>")
@@ -237,8 +236,9 @@ SOFTWARE.
 
                 element.append(buchette);
                 item.ref.buchette = buchette;
-            });
-        };
+            });        
+            element.trigger("change");
+		};
     };
     
     /*  MAIN */
