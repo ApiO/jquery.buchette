@@ -1,10 +1,10 @@
 # jquery.buchette
 
+[![NuGet](https://img.shields.io/nuget/v/jquery.buchette.svg)](https://www.nuget.org/packages/jquery.buchette) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
+
 jQuery UI collection for advanced search
 
 ![](https://github.com/ApiO/jquery.buchette/blob/master/images/jquery.buchette.jpg?raw=true)
-
-[![NuGet](https://img.shields.io/nuget/v/jquery.buchette.svg)](https://www.nuget.org/packages/jquery.buchette) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 
 ## Documentation & demo
 
